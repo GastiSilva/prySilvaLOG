@@ -10,11 +10,24 @@ using System.Windows.Forms;
 
 namespace prySilvaLOG
 {
-    public partial class Form1 : Form
+    public partial class frmPrincipal : Form
     {
-        public Form1()
+        public frmPrincipal()
         {
             InitializeComponent();
         }
+
+        clsAccesoBD AccesoBD = new clsAccesoBD();
+        private void CargarGrilla()
+        {
+            AccesoBD.TraerDatosDataSet(dgvDatos);
+        }
+        private void frmPrincipal_Load(object sender, EventArgs e)
+        {
+            AccesoBD.ConectarBaseDatos();
+            lblEstadoConexion.Text = AccesoBD.ConectionState;
+            CargarGrilla();
+        }
+
     }
 }
