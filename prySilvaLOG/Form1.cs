@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Data.OleDb;
+
 
 namespace prySilvaLOG
 {
@@ -16,5 +19,16 @@ namespace prySilvaLOG
         {
             InitializeComponent();
         }
+        clsLOGcs objAccesoaBase = new clsLOGcs();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            objAccesoaBase.ConectarBaseDatos();
+            sslblConexion.Text = objAccesoaBase.EstadoConexion;
+            objAccesoaBase.RegistrarDatosDataSet();
+            objAccesoaBase.TraerDatos(dgvDatos);
+
+        }
+
+
     }
 }
