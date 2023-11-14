@@ -73,7 +73,6 @@ namespace prySilvaLOG
         {
             try
             {
-                //ConectarBaseDatos();
                 comandoBD = new OleDbCommand();
 
                 comandoBD.Connection = conexionBD;
@@ -86,18 +85,18 @@ namespace prySilvaLOG
                 DataTable tablaGrabar = objDataSet.Tables["Registros"];
                 DataRow filaGrabar = tablaGrabar.NewRow();
 
-                filaGrabar["Categoria"] = "Carga de datos 2";
+                filaGrabar["Categoria"] = "Carga de datos";
                 filaGrabar["Fecha"] = DateTime.Now;
-                filaGrabar["Descripcion"] = "Probando 2";
+                filaGrabar["Descripcion"] = "Probando";
                 tablaGrabar.Rows.Add(filaGrabar);
 
                 OleDbCommandBuilder constructor = new OleDbCommandBuilder(adaptadorDS);
                 adaptadorDS.Update(objDataSet, "Registros");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                EstadoConexion = ex.Message;
+                
             }
 
 
